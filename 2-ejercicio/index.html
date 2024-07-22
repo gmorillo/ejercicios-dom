@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<h2 class="fn-insert-here"></h2>
+	<p class="fn-remove-me">Eliminame!</p>
+  <p>No me elimines!</p>
+  <p>No me elimines!</p>
+  <p class="fn-remove-me">Eliminame!</p>
+  <p>No me elimines!</p>
+  <p class="fn-remove-me">Eliminame!</p>
+  <p class="fn-remove-me">Eliminame!</p>
+  <p>No me elimines!</p>
+	<div></div><div></div>
+	<div class="fn-insert-here"></div>
+  <div class="fn-insert-here"></div>
+</body>
+
+<script>
+
+document.body.onload = addElement;
+
+function addElement() {
+  //1.1 Inserta dinamicamente en un html un div vacio con javascript.
+  const newDiv = document.createElement("div");
+  const newContent = document.createTextNode("Div 'vacío'");
+  newDiv.appendChild(newContent);
+  const currentDiv = document.querySelector("div:nth-child(2)");
+  document.body.insertBefore(newDiv, currentDiv);
+
+  //1.2 Inserta dinamicamente en un html un div que contenga una p con javascript.
+
+  const secondDiv = document.createElement("div");
+  const secondContent = document.createElement("p");
+  const pContent = document.createTextNode("esto es un <p></p> vacío");
+  secondDiv.appendChild(secondContent);
+  secondContent.appendChild(pContent);
+  const currentDivSec = document.querySelector("div:nth-child(2)");
+  document.body.insertBefore(secondDiv, currentDivSec);
+ 
+  //1.3 Inserta dinamicamente en un html un div que contenga 6 p utilizando un loop con javascript.
+
+  const thirdDiv = document.createElement("div");
+  
+  
+  for (let i = 1; i <= 6; i++) {
+    const thirdContent = document.createElement("p");
+    thirdDiv.appendChild(thirdContent);
+    const thirdPContent = document.createTextNode("lorem ipsum "+i);
+    thirdContent.appendChild(thirdPContent);
+
+    const currentDivthird = document.querySelector("div:nth-child(2)");
+    document.body.insertBefore(thirdDiv, currentDivthird);
+    
+  }
+
+  //1.4 Inserta dinamicamente con javascript en un html una p con el texto 'Soy dinámico!'.
+  const newDivDinamico = document.createElement("div");
+  const newContentDinamico = document.createTextNode("Soy dinámico!");
+  newDivDinamico.appendChild(newContentDinamico);
+  const currentDivDinamico = document.querySelector("div:nth-child(2)");
+  document.body.insertBefore(newDivDinamico, currentDivDinamico);
+
+
+  //1.5 Inserta en el h2 con la clase .fn-insert-here el texto 'Wubba Lubba dub dub'.
+
+  const h2 = document.querySelector("h2.fn-insert-here ");
+  const texto = document.createTextNode("Wubba Lubba dub dub");
+  h2.appendChild(texto);
+
+
+  //1.6 Basandote en el siguiente array crea una lista ul > li con los textos del array.
+  const apps = ['Facebook', 'Netflix', 'Instagram', 'Snapchat', 'Twitter'];
+  
+
+
+
+
+
+  let ul = document.createElement("ul");
+  document.body.appendChild(ul);
+
+  for (let i = 0; i < apps.length; i++) {
+    const li = document.createElement("li");
+    li.innerText = apps[i];
+    ul.appendChild(li);
+    const listElement = document.querySelector("div:nth-child(2)");
+    document.body.insertBefore(ul, listElement);
+  }
+
+
+  //1.7 Elimina todos los nodos que tengan la clase .fn-remove-me
+
+  function removeElementsByClass(className) {
+    let elements = document.getElementsByClassName(className);
+    while(elements.length > 0) {
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+  removeElementsByClass('fn-remove-me');
+
+  //1.8 Inserta una p con el texto 'Voy en medio!' entre los dos div. Recuerda que no solo puedes insertar elementos con .appendChild.
+  var el1 = document.querySelector('div');
+  el1.insertAdjacentHTML('afterend', '<p class="myp">Voy en medio!</p>');
+}
+
+
+//1.9 Inserta p con el texto 'Voy dentro!', dentro de todos los div con la clase .fn-insert-here
+
+var divPutInfo = document.querySelectorAll("div.fn-insert-here");
+
+for (let i = 0; i < divPutInfo.length; i++) {
+  const element = divPutInfo[i];
+  element.textContent = 'Voy dentro!';
+}
+
+</script>
+</html>
