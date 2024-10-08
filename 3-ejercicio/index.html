@@ -56,21 +56,65 @@ const countries_object = [
 
 
 
+// Creas el elemento
+var elem = document.createElement('div');
+// Modificas los atributos
+elem.id = "elementId";
+
+document.body.appendChild(elem);
+
+function removeSpecificElement(elem)
+  {
+    alert("clicked!");
+
+  }
+
 
 for (const country of countries_object) {
-
+  let globalDiv = document.createElement("div");
   let divElement = document.createElement("div");
+
   const imgElement = document.createElement("img");
   const titleElement = document.createElement("h4");
 
-  divElement = document.body.appendChild(divElement);
+  const button = document.createElement('button');
+  button.id = "removeButton"
+  button.setAttribute("onclick","removeSpecificElement(this);");
+  button.textContent = 'Eliminar elemento específico';
+
+
+  elem.appendChild(divElement);
+
   divElement.appendChild(titleElement);
   divElement.appendChild(imgElement);
+  divElement.appendChild(button);
 
   titleElement.innerText = country['title']
   imgElement.src = country['imgUrl'];
 
 }
+
+//1.5 Basandote en el ejercicio anterior. Crea un botón que elimine el último  elemento de la serie de divs.
+
+const newButton = document.createElement('button');
+newButton.id = "removeButton"
+newButton.setAttribute("onclick","removeLastChild(this);");
+newButton.textContent = 'Eliminar último elemento';
+document.body.appendChild(newButton);
+
+function removeLastChild(clicked_id)
+  {
+    if(document.getElementById("elementId").lastChild){
+      document.getElementById("elementId").lastChild.remove();
+    }else{
+      let error = document.createElement("h4");
+      document.body.appendChild(error);
+      error.textContent = 'No hay más elementos para borrar';
+      newButton.remove();
+    }
+  }
+
+//1.6 Basandote en el ejercicio anterior. Crea un botón para cada uno de los  divs que elimine ese mismo elemento del html.
 
 
 </script>
